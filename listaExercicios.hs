@@ -1,5 +1,5 @@
 import Text.Read (Lexeme(String))
-import Data.Char (toLower)
+import Data.Char (toLower, toUpper)
 import GHC.Exts.Heap (GenClosure(fun))
 
 -- Exercicio 1
@@ -218,3 +218,41 @@ listaNumeros [x]
 listaNumeros (x:y:_) = x + y
 
 
+--Exercicios 15
+-- Usando recursão
+tamanhoLista::[a] -> Int
+tamanhoLista [] = 0
+tamanhoLista (_:t) = 1 + tamanhoLista t
+
+-- Usando função de alta ordem length
+-- tamanhoLista::[a] -> Int
+-- -- tamanhoLista [] = 0
+-- tamanhoLista n = length n
+
+-- Exercicio 16
+-- if 1 == 2 then "abc" else ['d', 'e', 'f']  -- "def"
+
+-- let pot_dois x | x <= 0 = 1 | otherwise = 2 * pot_dois (x -1) in pot_dois 6  -- 64
+
+-- Deu erro de sintaxe
+-- case not (1 /= 2) of True -> 3 False -> "fim” 
+
+-- filter (not.even.(+3)) [5, 6, 7, 8, 9] 
+-- not True=False even=True 3+5=8, Excluido
+-- not False=True even=False 3+6=9, Mantido
+-- not True=False even=True 3+7=10, Excluido
+-- not False=True even=False 3+8=11, Mantido
+-- not True=False even=True 3+9=12 , Excluido
+--      => [6,8] Resultado
+
+
+-- Logaritmo recebe a base e o resultado e retorna a potência
+-- o map aplica a função logBase 3 em cada elemento da lista [9, 27, 81]
+-- sum soma os elementos da lista resultante do map
+-- sum (map (logBase 3) [9, 27, 81]) -- 2.0 + 3.0 + 4.0 = 9.0 
+
+
+-- foldr (\x y -> x + y) 2 [10,20,30] -- 10 + (20 + (30 + 2)) = 62
+
+-- foldl (\x y -> x + y) 2 [10,20,30] -- ((2 + 10) + 20) + 30 = 62
+-- foldl (\x y -> x * y) 2 [10,20,30] -- ((2 * 10) * 20) * 30 = 12000
